@@ -123,7 +123,7 @@ bootstra%:
 build: $(PREFIX)/$(BINNAME)
 	@echo "Build Complete!"
 
-$(PREFIX)/$(BINNAME): $(SRC)
+$(PREFIX)/$(BINNAME): FORCE
 	$Q mkdir -p $(PREFIX)
 	$Q $(GOOS_OVERRIDE) $(CGO_OVERRIDE) go build \
 		-v \
@@ -233,3 +233,5 @@ binary-windows-amd64:
 	$(call BUNDLE_MAKE,windows,amd64,,$(BINARY_OUTPUT)windows-amd64)
 
 .PHONY: binary-linux-amd64 binary-linux-arm64 binary-linux-armv7 binary-linux-mips binary-darwin-amd64 binary-darwin-arm64 binary-windows-amd64
+
+FORCE:

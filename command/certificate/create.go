@@ -4,6 +4,7 @@ import (
 	"crypto"
 	"crypto/x509"
 	"encoding/pem"
+	"fmt"
 	"time"
 
 	"github.com/pkg/errors"
@@ -623,7 +624,7 @@ func createAction(ctx *cli.Context) error {
 		// Save key and certificate request
 		if keyFile != "" {
 			if err := savePrivateKey(ctx, keyFile, priv, noPass); err != nil {
-				return err
+				return fmt.Errorf("saving private key: %w", err)
 			}
 		}
 
